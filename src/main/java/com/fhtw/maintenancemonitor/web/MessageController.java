@@ -21,6 +21,12 @@ public class MessageController {
         return ResponseEntity.ok(messageService.getMessage());
     }
 
+    @PutMapping(value = "/api/message/reset")
+    public ResponseEntity<Object> resetMessage() {
+        messageService.resetMessage();
+        return ResponseEntity.ok().build();
+    }
+
 
 
 
