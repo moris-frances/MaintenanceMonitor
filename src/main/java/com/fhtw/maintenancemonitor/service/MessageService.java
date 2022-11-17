@@ -1,6 +1,5 @@
 package com.fhtw.maintenancemonitor.service;
 
-import com.fhtw.maintenancemonitor.exception.MessageException;
 import org.springframework.stereotype.Service;
 
 @Service
