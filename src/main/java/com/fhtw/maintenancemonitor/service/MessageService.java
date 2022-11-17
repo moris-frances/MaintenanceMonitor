@@ -12,7 +12,9 @@ public class MessageService{
         return  (message != null && !message.isEmpty()) ? message : defaultMessage;
     }
 
-
+    public void resetMessage(){
+        this.message = null;
+    }
 
 
 }
