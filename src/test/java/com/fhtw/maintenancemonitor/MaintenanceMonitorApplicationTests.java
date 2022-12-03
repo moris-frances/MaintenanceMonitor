@@ -47,5 +47,17 @@ class MaintenanceMonitorApplicationTests {
 		String actual = messageService.getMessage();
 		assertEquals(expected, actual);
 	}
-
+	@Test
+	public void setValidMessageTest() throws Exception {
+		RequestBuilder postRequest = MockMvcRequestBuilders.post("/api/message/set?m=Service+checks:+No+power+until+5:00+pm ");
+		mockMvc.perform(postRequest)
+				.andExpect(status().isOk());
+	}
+	@Test
+	public void setInvalidMessageTest() throws Exception {
+		RequestBuilder postRequest = MockMvcRequestBuilders.post("/api/message/set?m=");
+		mockMvc.perform(postRequest).andExpect(status().isBadRequest())
+				.andExpect(content().contentType(MediaType.valueOf("text/plain;charset=UTF-8")))
+				.andExpect(content().string("Message can not be empty"));
+	}
 }
