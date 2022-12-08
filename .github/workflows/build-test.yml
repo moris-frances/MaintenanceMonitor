@@ -27,6 +27,8 @@ jobs:
         with:
           name: Build
           path: artifacts
+      - name: Test with Maven
+        run: mvn -B test --file pom.xml
 
 
 
