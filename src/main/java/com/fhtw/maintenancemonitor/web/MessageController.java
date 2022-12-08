@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 public class MessageController {
 
     private final MessageService messageService;
-    //private String messageStyle =  "<body style=\"background-color: #DBF4E4\"><h1 style=\"display: flex; height: 200px;align-items: center;justify-content: center; \">";
-    private String messageStyle =  "";
+    private String messageStyle =  "<body style=\"background-color: #DBF4E4\"><h1 style=\"display: flex; height: 200px;align-items: center;justify-content: center; \">";
+    //private String messageStyle =  "";
     @Autowired
     public MessageController(MessageService messageService) {
         this.messageService = messageService;
@@ -27,7 +27,7 @@ public class MessageController {
     @RequestMapping(value = "/api/message/reset")
     public ResponseEntity<Object> resetMessage() {
         messageService.resetMessage();
-        //messageStyle =  "<body style=\"background-color: #DBF4E4\"><h1 style=\"display: flex; height: 200px;align-items: center;justify-content: center; \">";
+        messageStyle =  "<body style=\"background-color: #DBF4E4\"><h1 style=\"display: flex; height: 200px;align-items: center;justify-content: center; \">";
         return ResponseEntity.ok(messageStyle + "Message reset");
     }
 
@@ -37,7 +37,7 @@ public class MessageController {
     public ResponseEntity<Object> setMessage(@RequestParam(value = "m") String message) {
         try {
             messageService.setMessage(message);
-            //messageStyle =  "<body style=\"background-color: #FFCC99\"><h1 style=\"display: flex; height: 200px;align-items: center;justify-content: center; \">";
+            messageStyle =  "<body style=\"background-color: #FFCC99\"><h1 style=\"display: flex; height: 200px;align-items: center;justify-content: center; \">";
             return ResponseEntity.ok(messageStyle + "Message set to \"" + message+"\"");
         } catch (MessageException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

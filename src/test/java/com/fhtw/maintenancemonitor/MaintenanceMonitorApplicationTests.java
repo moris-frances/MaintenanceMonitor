@@ -25,7 +25,6 @@ class MaintenanceMonitorApplicationTests {
 
 	@Autowired
 	MessageService messageService;
-
 	@BeforeEach
 	void clear(){
 		messageService.resetMessage();
@@ -35,8 +34,10 @@ class MaintenanceMonitorApplicationTests {
 		RequestBuilder getRequest = MockMvcRequestBuilders.get("/api/message");
 		mockMvc.perform(getRequest)
 				.andExpect(status().isOk())
-				.andExpect(content().contentType(MediaType.valueOf("text/plain;charset=UTF-8")))
-				.andExpect(content().string("Everything works as expected"));
+				.andExpect(content().contentType(MediaType.valueOf("text/plain;charset=UTF-8")));
+		String expected = "Everything works as expected";
+		String actual = messageService.getMessage();
+		assertEquals(expected, actual);
 	}
 
 	@Test
