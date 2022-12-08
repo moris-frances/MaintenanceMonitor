@@ -5,15 +5,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MessageService{
-    private String message;
+    private String message = null;
+    private String defaultMessage = "Everything works as expected";
 
     public String getMessage(){
-        String defaultMessage = "Everything works as expected";
-        return  (message != null && !message.isEmpty()) ? message : defaultMessage;
+
+        if(message != null && !message.isEmpty()){
+            return message;
+        }
+        return defaultMessage;
     }
 
     public void resetMessage(){
-        this.message = null;
+
+        this.message = this.defaultMessage;
     }
     public void setMessage(String message) throws MessageException {
         if (message != null && !message.isEmpty()){
